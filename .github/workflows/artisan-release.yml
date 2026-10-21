@@ -108,8 +108,9 @@ jobs:
 
   publish:
     needs: [plan, build]
-    # macOS signs the darwin builds; Apple silicon refuses unsigned executables.
-    runs-on: macos-latest
+    # Bun gives the darwin executables it cross-compiles an ad-hoc signature,
+    # which is all Apple silicon needs for a download that isn't quarantined.
+    runs-on: ubuntu-latest
     env:
       VERSION: ${{ needs.plan.outputs.version }}
     steps:
@@ -134,19 +135,13 @@ jobs:
             rm -rf "$stage" && mkdir -p "$stage"
             cp -R "$source" "$stage/package"
             chmod +x "$stage"/package/bin/*
-            case "$target" in
-              darwin-*)
-                codesign --force --sign - "$stage/package/bin/opencode"
-                codesign --verify --strict "$stage/package/bin/opencode"
-                ;;
-            esac
             # Forge reads this to know the build understands OPENCODE_HOME.
             jq -n --arg version "$VERSION" '{upstream: ("v" + $version), features: ["OPENCODE_HOME"]}' \
               > "$stage/package/artisan.json"
             asset="opencode-cli-$target.tar.gz"
             tar -czf "out/$asset" -C "$stage" package
-            sha=$(shasum -a 256 "out/$asset" | cut -d' ' -f1)
-            size=$(stat -f%z "out/$asset")
+            sha=$(sha256sum "out/$asset" | cut -d' ' -f1)
+            size=$(stat -c%s "out/$asset")
             platforms=$(jq --arg t "$target" --arg a "$asset" --arg s "$sha" --argjson z "$size" \
               '. + {($t): {asset: $a, sha256: $s, size: $z}}' <<< "$platforms")
           done

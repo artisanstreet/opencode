@@ -16,7 +16,7 @@ that Artisan Forge needs. Forge installs OpenCode from this fork's releases.
 `.github/workflows/artisan-release.yml` checks npm's `@opencode/cli` `latest`
 tag every six hours. For a version without a release it applies the patches
 to upstream's `v<version>` tag, builds every target Forge installs with
-upstream's own build script, ad-hoc signs the macOS builds and publishes the
+upstream's own build script (Bun ad-hoc signs the macOS builds) and publishes the
 release `artisan-v<version>`:
 
 - `opencode-cli-<target>.tar.gz`: upstream's npm package layout (`package/bin/opencode`)
