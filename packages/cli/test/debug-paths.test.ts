@@ -48,6 +48,36 @@ describe("debug paths command", () => {
       await fs.rm(root, { recursive: true, force: true })
     }
   })
+
+  test("roots every global path under OPENCODE_HOME over the XDG directories", async () => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "opencode-debug-paths-"))
+
+    try {
+      const result = await cli(["debug", "paths"], {
+        OPENCODE_HOME: path.join(root, "own"),
+        XDG_DATA_HOME: path.join(root, "data"),
+        XDG_CONFIG_HOME: path.join(root, "config"),
+        XDG_CACHE_HOME: path.join(root, "cache"),
+        XDG_STATE_HOME: path.join(root, "state"),
+      })
+      const paths = Object.fromEntries(
+        result.stdout
+          .trim()
+          .split("\n")
+          .map((line) => line.trim().split(/\s+/, 2)),
+      )
+
+      expect({ exitCode: result.exitCode, stderr: result.stderr }).toEqual({ exitCode: 0, stderr: "" })
+      expect(paths).toMatchObject({
+        data: path.join(root, "own", "data", "opencode"),
+        config: path.join(root, "own", "config", "opencode"),
+        cache: path.join(root, "own", "cache", "opencode"),
+        state: path.join(root, "own", "state", "opencode"),
+      })
+    } finally {
+      await fs.rm(root, { recursive: true, force: true })
+    }
+  })
 })
 
 async function cli(args: string[], env?: Record<string, string>) {
