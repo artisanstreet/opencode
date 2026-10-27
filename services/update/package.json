@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@opencode/update",
+  "license": "BSD-3-Clause AND MIT",
   "version": "2.1.2",
   "private": true,
   "type": "module",

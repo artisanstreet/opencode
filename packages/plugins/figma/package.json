@@ -4,7 +4,7 @@
   "version": "2.1.2",
   "description": "Figma MCP integration and official Figma skills for OpenCode",
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause AND MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anomalyco/opencode.git",

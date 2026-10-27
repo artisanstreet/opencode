@@ -2,7 +2,7 @@
   "name": "@opencode/console-app",
   "version": "2.1.2",
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause AND MIT",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "dev": "vite dev --host 0.0.0.0",

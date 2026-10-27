@@ -3,7 +3,7 @@
   "version": "2.1.2",
   "private": true,
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause AND MIT",
   "exports": {
     "./actions": "./src/actions.ts",
     "./document": "./src/document.ts",
