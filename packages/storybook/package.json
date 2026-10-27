@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@opencode/storybook",
+  "license": "BSD-3-Clause AND MIT",
   "private": true,
   "type": "module",
   "scripts": {

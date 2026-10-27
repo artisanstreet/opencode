@@ -4,7 +4,7 @@
   "version": "2.1.2",
   "private": true,
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause AND MIT",
   "exports": {
     ".": "./src/index.ts",
     "./config": "./src/config.ts",

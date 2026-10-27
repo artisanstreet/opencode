@@ -3,7 +3,7 @@
   "version": "2.1.2",
   "name": "@opencode/ai",
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause AND MIT",
   "scripts": {
     "setup:recording-env": "bun run script/setup-recording-env.ts",
     "test": "bun test --timeout 30000 --only-failures",
