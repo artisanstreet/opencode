@@ -16,8 +16,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
  packages/cli/test/debug-paths.test.ts | 30 +++++++++++++++++++++++++++
  packages/client/src/service-probe.ts  |  4 +++-
  packages/util/src/global-roots.ts     | 19 +++++++++++++----
- packages/web/src/content/docs/cli.mdx |  1 +
- 4 files changed, 49 insertions(+), 5 deletions(-)
+ 3 files changed, 48 insertions(+), 5 deletions(-)
 
 diff --git a/packages/cli/test/debug-paths.test.ts b/packages/cli/test/debug-paths.test.ts
 index 60e00ec4db..8940acfc14 100644
@@ -105,18 +104,6 @@ index a9324e4987..9bac1d977a 100644
  
  /** The XDG base directories that root opencode's global paths. */
  export function roots(app: string) {
-diff --git a/packages/web/src/content/docs/cli.mdx b/packages/web/src/content/docs/cli.mdx
-index 8d1bdaf39f..d0210817b2 100644
---- a/packages/web/src/content/docs/cli.mdx
-+++ b/packages/web/src/content/docs/cli.mdx
-@@ -679,6 +679,7 @@ OpenCode can be configured using environment variables.
- | `OPENCODE_CONFIG`                     | string  | Path to config file                               |
- | `OPENCODE_TUI_CONFIG`                 | string  | Path to TUI config file                           |
- | `OPENCODE_CONFIG_DIR`                 | string  | Path to config directory                          |
-+| `OPENCODE_HOME`                       | string  | Root for data, config, cache and state; replaces the XDG directories for opencode only |
- | `OPENCODE_CONFIG_CONTENT`             | string  | Inline json config content                        |
- | `OPENCODE_DISABLE_AUTOUPDATE`         | boolean | Disable automatic update checks                   |
- | `OPENCODE_DISABLE_PRUNE`              | boolean | Disable pruning of old data                       |
 -- 
 2.55.0
 
